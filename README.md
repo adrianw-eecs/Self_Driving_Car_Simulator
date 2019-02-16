@@ -9,6 +9,7 @@ In this project I will be using a Neural Network to drive a car around a  track 
 The models that I will be posting can be run by running the command python drive.py "modelname.h5"
 
 ## Model Versions
+### Current Best Model: **model-V1.02**
 1.	**model-Pre-Trained** - Pre-trained model created
 
 This model performs fairly well from the beginning, it stays on the track the entire time.
@@ -39,6 +40,10 @@ As expected the training rate was way to high and the model moved forward with a
 
 This model was trained based on 5 laps from the desert track meaning it has a larger dataset to learn from and hopefully from that we will be able to see some improvements. The model turned out to be a big disappointment, I thought that with more data it would be able to perform better. Testing on another track yielded similar results, this model performed poorly. Model was unable to make it around the first turn under different conditions. 
 
+8. **model-V1.06** - Model trained using 5 laps of desert test data and 10 epochs and learning rate of 2.0e-4
+
+This model was used to see how the neural network changes after each Epoch and helped me understand the difference between loss and val_loss. More results can be seen in the section "Evaluation of how Epochs change the model".
+
 ## Lessons Learned
 ### Learning rate: 
 Learning rates have large effects on the outcome of the models, in model-V1.01 I used a Learning rate of 1.0e-4 which resulted in a model that was able to complete half a lap in the simulator. In the next model-V1.02 I doubled the Learning rate and the model was able to complete laps flawlessly which was a huge improvement from for a minor change. Upon analyzing the epochs I noticed that when the Learning rate was ideal a steady decline in the loss and val_loss functions can be seen below:
@@ -66,13 +71,40 @@ Epoch 10/10
 20000/20000 [==============================] - 112s - loss: 0.0262 - val_loss: 0.0182
 ```
 ### Size of Data
-From my current experiment their were not any improved results from training the networks on a larger data set. In fact the models trained on the larger data sets performed worse than those trained on the smaller datasets. This most likely has to do with the complexity of the neural network, if its a larger network then more data will be required to adjust the weights.
+From my current experiment their were not any improved results from training the networks on a larger data set. In fact the models trained on the larger data sets performed worse than those trained on the smaller datasets which I did not expect. The models trained on larger datasets would have had more expereince and should expereince the overfitting problem less. This most likely has to do with the complexity of the neural network, if its a larger network then more data will be required to adjust the weights.
 
 More experimentation is requried.
 
+### Evaluation of how Epochs change the model
+20000/20000 [==============================] - 117s - loss: 0.0313 - val_loss: 0.0134
+Using *model-V1.06* I used keras.callbacks to create checkpoints of how every epoch changes the behavior of the model. Looking at the training stats below one may assume that after the 4th Epoch(loss: 0.0313 - val_loss: 0.0134) would yield the highest performance due to the extremely low val_loss of 0.0134 which was the lowest out of the batch however when testing this model it was unable to make sharp turns and was swaying back and fourth in the lane.
+
+When testing the after the 6th Epoch the model fixed the swaying issue noticed in the previous versions and was able to make it 3/4ths the way through the track, getting stuck on the sharp right turn. Which I noticed was an issue with all the other version. None of these models were able to complete an entire lap. 
+```
+20000/20000 [==============================] - 118s - loss: 0.0357 - val_loss: 0.0169
+Epoch 2/10
+20000/20000 [==============================] - 117s - loss: 0.0336 - val_loss: 0.0194
+Epoch 3/10
+20000/20000 [==============================] - 116s - loss: 0.0332 - val_loss: 0.0205
+Epoch 4/10
+20000/20000 [==============================] - 117s - loss: 0.0313 - val_loss: 0.0134
+Epoch 5/10
+20000/20000 [==============================] - 117s - loss: 0.0305 - val_loss: 0.0147
+Epoch 6/10
+20000/20000 [==============================] - 117s - loss: 0.0292 - val_loss: 0.0176
+Epoch 7/10
+20000/20000 [==============================] - 117s - loss: 0.0293 - val_loss: 0.0147
+Epoch 8/10
+20000/20000 [==============================] - 117s - loss: 0.0293 - val_loss: 0.0145
+Epoch 9/10
+20000/20000 [==============================] - 117s - loss: 0.0281 - val_loss: 0.0143
+Epoch 10/10
+20000/20000 [==============================] - 118s - loss: 0.0278 - val_loss: 0.0172
+``` 
+
 ## Future Steps:
 1.	Add Lane Detection
-2.	Prevent Swaying
+
 
 
 
