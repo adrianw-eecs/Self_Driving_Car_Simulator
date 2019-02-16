@@ -8,8 +8,14 @@ In this project I will be using a Neural Network to drive a car around a  track 
 ## Usage
 The models that I will be posting can be run by running the command python drive.py "modelname.h5"
 
+## Model Versions
+1. *model_Original* - Pre-trained model created
+2. *model_V1.00* - Model Trained using 2 Laps of Test data and 2 Epochs
+3.	*model_V1.01* - Model Trained using 2 Laps of Test data and 10 Epochs
 ## Future Steps:
--Add Lane Detection
--Prevent Swaying
+1.	Add Lane Detection
+2.	Prevent Swaying
+
+
 
 
