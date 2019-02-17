@@ -9,7 +9,7 @@ In this project I will be using a Neural Network to drive a car around a  track 
 The models that I will be posting can be run by running the command python drive.py "modelname.h5"
 
 ## Model Versions
-### Current Best Model: **model-V1.02**
+### Current Best Model: **model-V1.02** Or **model-V1.07-Epoch-15** 
 1.	**model-Pre-Trained** - Pre-trained model created
 
 This model performs fairly well from the beginning, it stays on the track the entire time.
