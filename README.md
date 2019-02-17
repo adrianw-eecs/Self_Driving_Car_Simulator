@@ -44,6 +44,10 @@ This model was trained based on 5 laps from the desert track meaning it has a la
 
 This model was used to see how the neural network changes after each Epoch and helped me understand the difference between loss and val_loss. More results can be seen in the section "Evaluation of how Epochs change the model".
 
+8. **model-V1.07** - Model trained using 2 laps of desert test data and 30 epochs and learning rate of 1.5e-4
+
+This model was a more prolonged study to see how the neural network changes after each Epoch and helped me understand the difference between loss and val_loss. This test showed produced very similar results to *model-V1.06*, when tested one the desert track. Around epoch 15 the model was able to comfortably make laps on the desert track. All models after that were also able to make full laps. However when I tested the model against a new enviroment the forest track, I found that epoch 15 was able to perform better than all the models after it. This is the problem of overfitting. The later models were unable to detect the road on the forest track and couldn't make it past the first turn. 
+
 ## Lessons Learned
 ### Learning rate: 
 Learning rates have large effects on the outcome of the models, in model-V1.01 I used a Learning rate of 1.0e-4 which resulted in a model that was able to complete half a lap in the simulator. In the next model-V1.02 I doubled the Learning rate and the model was able to complete laps flawlessly which was a huge improvement from for a minor change. Upon analyzing the epochs I noticed that when the Learning rate was ideal a steady decline in the loss and val_loss functions can be seen below:
@@ -101,6 +105,8 @@ Epoch 9/10
 Epoch 10/10
 20000/20000 [==============================] - 118s - loss: 0.0278 - val_loss: 0.0172
 ``` 
+#### Overfitting
+When testing *model-V1.07* around epoch 15 the model was able to comfortably make laps on the desert track. All models after that were also able to make full laps on this track. However when I tested the model against a new enviroment the forest track, I found that epoch 15 was able to perform better than all the models after it that had more training and better loss function scores. The later models were unable to detect the road on the forest track and couldn't make it past the first turn. This is the problem of overfitting. 
 
 ## Future Steps:
 1.	Add Lane Detection
