@@ -9,7 +9,7 @@ In this project I will be using a Neural Network to drive a car around a  track 
 The models that I will be posting can be run by running the command python drive.py "modelname.h5"
 
 ## Model Versions
-### Current Best Model: **model-V1.02** Or **model-V1.07-Epoch-15** 
+### Current Best Model: **model-V1.02**  **model-V1.08-Epoch
 1.	**model-Pre-Trained** - Pre-trained model created
 
 This model performs fairly well from the beginning, it stays on the track the entire time.
@@ -44,9 +44,18 @@ This model was trained based on 5 laps from the desert track meaning it has a la
 
 This model was used to see how the neural network changes after each Epoch and helped me understand the difference between loss and val_loss. More results can be seen in the section "Evaluation of how Epochs change the model".
 
-8. **model-V1.07** - Model trained using 2 laps of desert test data and 30 epochs and learning rate of 1.5e-4
+9. **model-V1.07** - Model trained using 2 laps of desert test data and 30 epochs and learning rate of 1.5e-4
 
 This model was a more prolonged study to see how the neural network changes after each Epoch and helped me understand the difference between loss and val_loss. This test showed produced very similar results to *model-V1.06*, when tested one the desert track. Around epoch 15 the model was able to comfortably make laps on the desert track. All models after that were also able to make full laps. However when I tested the model against a new enviroment the forest track, I found that epoch 15 was able to perform better than all the models after it. This is the problem of overfitting. The later models were unable to detect the road on the forest track and couldn't make it past the first turn. 
+
+10. **model-V1.08** - Model trained using 2 laps of desert test data and 10 epochs and learning rate of 2.0e-4, test a different activation function ReLU.
+
+This model with the ReLU activation function seems to learn at a faster rate, after epoch 5 the model was able to complete the laps. The best model from this model version was easily able to complete laps on the track. 
+
+
+11. ** ** - Model trained using 2 laps of desert test data and 10 epochs and learning rate of 2.0e-4, test a different activation function Leaky ReLU. Might need adjustment of learning rate.
+
+11. ** ** - Model trained using 2 laps of desert test data and 10 epochs and learning rate of 2.0e-4, test a different activation function SeLU. Might need adjustment of learning rate.
 
 ## Lessons Learned
 ### Learning rate: 
@@ -107,6 +116,10 @@ Epoch 10/10
 ``` 
 #### Overfitting
 When testing *model-V1.07* around epoch 15 the model was able to comfortably make laps on the desert track. All models after that were also able to make full laps on this track. However when I tested the model against a new enviroment the forest track, I found that epoch 15 was able to perform better than all the models after it that had more training and better loss function scores. The later models were unable to detect the road on the forest track and couldn't make it past the first turn. This is the problem of overfitting. 
+
+
+### Actiavtion Functions
+The actiavtion function ReLU seemed to learn quicker than the eLU activation function. More testing is required, after epoch 5 the model was able to successfully complete laps on the Desert track. When I tested the model on the Forest track the new activation function performed worse when handling unexpected. 
 
 ## Future Steps:
 1.	Add Lane Detection
