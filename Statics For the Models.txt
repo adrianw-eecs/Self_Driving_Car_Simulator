@@ -165,7 +165,7 @@ Epoch 29/30
 Epoch 30/30
 20000/20000 [==============================] - 110s - loss: 0.0208 - val_loss: 0.0239
 
-Model with 2 laps of training data and learning rate of 2.0e-4 and activation function of ReLU
+Model(model-V1.08) with 2 laps of training data and learning rate of 2.0e-4 and activation function of ReLU
 20000/20000 [==============================] - 114s - loss: 0.0398 - val_loss: 0.0195
 Epoch 2/10
 20000/20000 [==============================] - 111s - loss: 0.0332 - val_loss: 0.0185
@@ -184,4 +184,25 @@ Epoch 8/10
 Epoch 9/10
 20000/20000 [==============================] - 113s - loss: 0.0246 - val_loss: 0.0209
 Epoch 10/10
-20000/20000 [==============================] - 112s - loss: 0.0227 - val_loss: 0.0277
+20000/20000 [==============================] - 112s - loss: 0.0227 - val_loss: 0.0277 
+
+Model(model-V1.09) with 2 laps of training data and learning rate of 2.0e-4 and activation function of eLU and Loss function of mean_absolute_error
+20000/20000 [==============================] - 114s - loss: 0.1351 - val_loss: 0.0795
+Epoch 2/10
+20000/20000 [==============================] - 113s - loss: 0.1314 - val_loss: 0.0842
+Epoch 3/10
+20000/20000 [==============================] - 113s - loss: 0.1301 - val_loss: 0.0881
+Epoch 4/10 
+20000/20000 [==============================] - 111s - loss: 0.1260 - val_loss: 0.0901
+Epoch 5/10
+20000/20000 [==============================] - 110s - loss: 0.1238 - val_loss: 0.0762
+Epoch 6/10
+20000/20000 [==============================] - 115s - loss: 0.1206 - val_loss: 0.0855
+Epoch 7/10
+20000/20000 [==============================] - 115s - loss: 0.1196 - val_loss: 0.0855
+Epoch 8/10
+20000/20000 [==============================] - 115s - loss: 0.1168 - val_loss: 0.0787
+Epoch 9/10
+20000/20000 [==============================] - 115s - loss: 0.1141 - val_loss: 0.0830
+Epoch 10/10
+20000/20000 [==============================] - 116s - loss: 0.1106 - val_loss: 0.0631

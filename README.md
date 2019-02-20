@@ -52,6 +52,9 @@ This model was a more prolonged study to see how the neural network changes afte
 
 This model with the ReLU activation function seems to learn at a faster rate, after epoch 5 the model was able to complete the laps. The best model from this model version was easily able to complete laps on the track. 
 
+11. **model-V1.09** - Model trained using 2 laps of desert test data and 10 epochs and learning rate of 2.0e-4, test a different activation function eLU and loss function changed to mean_absolute_error.
+
+Upon initale inspection the model seems to have trained better than with the loss function being mean_squared_error. This is just by looking at the loss values generated. My inital prediction was completely wrong the mean absolute error performed much worse, the car was unable to make it past the first sharp turn and many models were had difficult making it past small turns. I will most likley stick with the mean squared error loss function for the future. 
 
 ## Lessons Learned
 ### Learning rate: 
