@@ -53,10 +53,6 @@ This model was a more prolonged study to see how the neural network changes afte
 This model with the ReLU activation function seems to learn at a faster rate, after epoch 5 the model was able to complete the laps. The best model from this model version was easily able to complete laps on the track. 
 
 
-11. ** ** - Model trained using 2 laps of desert test data and 10 epochs and learning rate of 2.0e-4, test a different activation function Leaky ReLU. Might need adjustment of learning rate.
-
-11. ** ** - Model trained using 2 laps of desert test data and 10 epochs and learning rate of 2.0e-4, test a different activation function SeLU. Might need adjustment of learning rate.
-
 ## Lessons Learned
 ### Learning rate: 
 Learning rates have large effects on the outcome of the models, in model-V1.01 I used a Learning rate of 1.0e-4 which resulted in a model that was able to complete half a lap in the simulator. In the next model-V1.02 I doubled the Learning rate and the model was able to complete laps flawlessly which was a huge improvement from for a minor change. Upon analyzing the epochs I noticed that when the Learning rate was ideal a steady decline in the loss and val_loss functions can be seen below:
