@@ -4,7 +4,7 @@ I was inspired to do this project by Siraj Raval from Youtube.
 ## Overview
 
 In this project I will be using a Neural Network to drive a car around a  track in a simulator. The simulator we're going to use Udacity's [self driving car simulator](https://github.com/udacity/self-driving-car-sim) as a testbed for training an autonomous car. Along with the simulator I was provided a pre-trained model, I will be attempting to outperform this model. 
-
+![Self-Driving Car Simulator](./sim_image.png)
 ## Usage
 The models that I will be posting can be run by running the commands below
 ###Training 
@@ -64,8 +64,11 @@ Upon initale inspection the model seems to have trained better than with the los
 
 12. **model-V1.10** - Model trained using 2 laps of desert test data and 10 epochs and learning rate of 2.0e-4, test a different activation function eLU and loss function changed to mean_absolute_error. This model also used dropout of 20% after each layer of the network. 
 
-This model performed very similarly to models before however still had some issues with the 
+This model performed very similarly to models before however still had some issues with the first turn. This may be due to the input data being wrong or misleading. 
 
+13. **model-V1.11** - Model trained using 2 laps of desert test data and 10 epochs and learning rate of 2.0e-4, test a different activation function eLU and loss function changed to mean_squared_error. However this model used no drop out.
+
+From my research on the topic of drop out, drop out typically improves the performance of a nerual network. However from my testing the model was able to run extremely smoothly without drop out and even kept itself more centered. 
 
 ## Lessons Learned
 ### Learning rate: 
@@ -130,6 +133,9 @@ When testing *model-V1.07* around epoch 15 the model was able to comfortably mak
 
 ### Actiavtion Functions
 The actiavtion function ReLU seemed to learn quicker than the eLU activation function. More testing is required, after epoch 5 the model was able to successfully complete laps on the Desert track. When I tested the model on the Forest track the new activation function performed worse when handling unexpected. 
+
+### Loss Functions
+I tried a few loss functions however they all performed worse than the mean squared error that I had been using all along. Looking at graphs of the loss functions I tried I can see why they would perform worse than the mean squared error since their slope are all lower/not as steep. 
 
 ## Future Steps:
 1.	Add Lane Detection
