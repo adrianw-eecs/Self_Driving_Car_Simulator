@@ -6,10 +6,16 @@ I was inspired to do this project by Siraj Raval from Youtube.
 In this project I will be using a Neural Network to drive a car around a  track in a simulator. The simulator we're going to use Udacity's [self driving car simulator](https://github.com/udacity/self-driving-car-sim) as a testbed for training an autonomous car. Along with the simulator I was provided a pre-trained model, I will be attempting to outperform this model. 
 
 ## Usage
-The models that I will be posting can be run by running the command python drive.py "modelname.h5"
+The models that I will be posting can be run by running the commands below
+###Training 
+python model.py -d Training_Data\2_Laps_Desert_Track -l 2.0e-4 -o false -n 10
+
+###Driving/Testing
+python drive.py Saved_Models\model-V1.02.h5 
+python drive.py Saved_Models\model-V1.08\model-008.h5 
 
 ## Model Versions
-### Current Best Model: model-V1.02 and model-V1.08-Epoch
+### Current Best Model: model-V1.02 and model-V1.08-Epoch-8
 1.	**model-Pre-Trained** - Pre-trained model created
 
 This model performs fairly well from the beginning, it stays on the track the entire time.
@@ -55,6 +61,11 @@ This model with the ReLU activation function seems to learn at a faster rate, af
 11. **model-V1.09** - Model trained using 2 laps of desert test data and 10 epochs and learning rate of 2.0e-4, test a different activation function eLU and loss function changed to mean_absolute_error.
 
 Upon initale inspection the model seems to have trained better than with the loss function being mean_squared_error. This is just by looking at the loss values generated. My inital prediction was completely wrong the mean absolute error performed much worse, the car was unable to make it past the first sharp turn and many models were had difficult making it past small turns. I will most likley stick with the mean squared error loss function for the future. 
+
+12. **model-V1.10** - Model trained using 2 laps of desert test data and 10 epochs and learning rate of 2.0e-4, test a different activation function eLU and loss function changed to mean_absolute_error. This model also used dropout of 20% after each layer of the network. 
+
+This model performed very similarly to models before however still had some issues with the 
+
 
 ## Lessons Learned
 ### Learning rate: 
