@@ -68,7 +68,7 @@ This model performed very similarly to models before however still had some issu
 
 13. **model-V1.11** - Model trained using 2 laps of desert test data and 10 epochs and learning rate of 2.0e-4, test a different activation function eLU and loss function changed to mean_squared_error. However this model used no drop out.
 
-12. **model-V1.12** - Model trained using 2 laps of desert test data and 10 epochs and learning rate of 2.0e-4, test a different activation function eLU and loss function changed to mean_absolute_error. This model also used dropout of 50% after each layer of the network. 
+14. **model-V1.12** - Model trained using 2 laps of desert test data and 10 epochs and learning rate of 2.0e-4, test a different activation function eLU and loss function changed to mean_absolute_error. This model also used dropout of 50% after each layer of the network. 
 
 This network failed completely most likely because the drop out rate was way to high, at 50% for each layer the network was only able to go straight and turn slightly after 8 epochs. 
 
