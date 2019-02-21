@@ -72,6 +72,11 @@ This model performed very similarly to models before however still had some issu
 
 This network failed completely most likely because the drop out rate was way to high, at 50% for each layer the network was only able to go straight and turn slightly after 8 epochs. 
 
+14. **model-V1.13** - Model trained using 2 laps of desert test data and 10 epochs and learning rate of 2.0e-4, test a different activation function eLU and loss function changed to mean_absolute_error. This model also used dropout of 20% after each layer of the network. 
+
+With the 20% drop out rate the model performed very well, after the 5th epoch the model was able to complete full laps and the later models were able to be completely centered thoughout the entire track. The drop out rate that I initally used was to high and caused the machine to not learn anything since the half the network nodes were gone.
+
+
 ## Lessons Learned
 ### Learning rate: 
 Learning rates have large effects on the outcome of the models, in model-V1.01 I used a Learning rate of 1.0e-4 which resulted in a model that was able to complete half a lap in the simulator. In the next model-V1.02 I doubled the Learning rate and the model was able to complete laps flawlessly which was a huge improvement from for a minor change. Upon analyzing the epochs I noticed that when the Learning rate was ideal a steady decline in the loss and val_loss functions can be seen below:
@@ -138,6 +143,9 @@ The actiavtion function ReLU seemed to learn quicker than the eLU activation fun
 
 ### Loss Functions
 I tried a few loss functions however they all performed worse than the mean squared error that I had been using all along. Looking at graphs of the loss functions I tried I can see why they would perform worse than the mean squared error since their slope are all lower/not as steep. 
+
+### Drop out rate
+Drop out rate is a useful property that allows every node in the network to get a chance to contribute to the end outputs and prevents one single node from making all the decisions. The drop out rate is a value that needs to be tuned very carefully, if the drop out rate is too high the network will fail to learn anything.
 
 ## Future Steps:
 1.	Add Lane Detection
