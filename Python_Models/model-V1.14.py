@@ -8,6 +8,7 @@ from keras.models import Sequential
 from keras.optimizers import Adam
 #to save our model periodically as checkpoints for loading later
 from keras.callbacks import ModelCheckpoint
+from keras.callbacks import TensorBoard
 #what types of layers do we want our model to have?
 from keras.layers import Lambda, Conv2D, MaxPooling2D, Dropout, Dense, Flatten
 #helper class to define input shape and generate training images given image paths & steering angles
@@ -16,6 +17,7 @@ from utils import INPUT_SHAPE, batch_generator
 import argparse
 #for reading files
 import os
+import time
 
 #for debugging, allows for reproducible (deterministic) results 
 np.random.seed(0)
@@ -64,7 +66,7 @@ def build_model(args):
     model = Sequential()
     model.add(Lambda(lambda x: x/127.5-1.0, input_shape=INPUT_SHAPE))
     model.add(Conv2D(24, 5, 5, activation='relu', subsample=(2, 2)))
-    # model.add(MaxPooling2D(pool_size=(2, 2), strides=(2,2), dim_ordering="th"))
+    # model.add(MaxPooling2D(pool_size=(2, 2), strides=(2,2), dim_ordering="th")) 
     model.add(Conv2D(36, 5, 5, activation='relu', subsample=(2, 2)))
     model.add(Conv2D(48, 5, 5, activation='relu', subsample=(2, 2)))
     model.add(MaxPooling2D(pool_size=(2, 2), strides=(2,2), dim_ordering="th"))
@@ -96,11 +98,13 @@ def train_model(model, args, X_train, X_valid, y_train, y_valid):
     #made based on either the maximization or the minimization of the monitored quantity. For val_acc, 
     #this should be max, for val_loss this should be min, etc. In auto mode, the direction is automatically
     #inferred from the name of the monitored quantity.
-    checkpoint = ModelCheckpoint('model-{epoch:03d}.h5',
+
+    checkpoint = ModelCheckpoint(("model-{epoch:03d}.h5"),
                                  monitor='val_loss',
                                  verbose=0,
                                  save_best_only=args.save_best_only,
                                  mode='auto')
+
 
     #calculate the difference between expected steering angle and actual steering angle
     #square the difference
