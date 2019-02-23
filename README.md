@@ -105,6 +105,7 @@ convolutional layer size(cnvS)
 convolutional window size(cnvW)
 number of dense neural network layers(dnsN)
 size of the dense neural network(dnsS)
+
 | cnvN	| cnvS 	| cnvW 	| dnsN 	| dnsS 	|
 | -----	| -----	| -----	| -----	| -----	|
 |	2	|  32	| 	5	| 	2	| 	50	|
