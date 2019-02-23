@@ -192,8 +192,8 @@ def main():
     #load data
     data = load_data(args)
 
-    conv_layers = [4]
-    conv_sizes = [32,64]
+    conv_layers = [2,3]
+    conv_sizes = [16,128]
     conv_winds = [3,5]
     dens_layers = [2,3]
     dens_sizes = [50,100]

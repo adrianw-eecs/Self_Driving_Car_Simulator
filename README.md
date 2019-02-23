@@ -5,6 +5,9 @@ I was inspired to do this project by Siraj Raval from YouTube.
 
 In this project I will be using a Neural Network to drive a car around a track in a simulator. The simulator we're going to use Udacity's [self driving car simulator](https://github.com/udacity/self-driving-car-sim) as a testbed for training an autonomous car. Along with the simulator I was provided a pre-trained model, I will be attempting to outperform this model. 
 ![Self-Driving Car Simulator](./Self_Driving_Car_Simulator.png)
+
+During this project I tried to determine which model would be the best to train based on their performance by varying a variety of factors including, number of convolutional layers, number of convolutional nodes, size of convolutional window, number of dense layers, nuumber of dense nodes.
+![self-driving-car-tensorBoard](./TensorBoard.png)
 ## Usage
 The models that I will be posting can be run by running the commands below
 ### Training 
