@@ -92,6 +92,34 @@ With the 20% drop out rate the model performed very well, after the 5th epoch th
 
 Model-V1.14 the training stats of this model looked very similar to many of the previous successful models I trained. This was very promising, however when I saw the size of the file, I was a little concerned since the model size was about half the size of the previous models. Upon testing the model, I was pleasantly surprised it was easily able to complete the track and controlled the car in a steady manor.
 
+17. Created 64 different models to test different parameters. The different parameters I checked for were number convolutional layers, convolutional layer size, convolutional window size, number of dense neural network layers, size of the dense neural network.
+
+Initally I had 64 different models which was a mess on TensorBoard:
+![self-driving-car-tensorBoard-all-Models](./TensorBoard-All-Models.PNG)
+
+For my evaluation of the stats I have determined 6 neural networks that were able to perform the best as shown below, and then I looked at the parameters given and looked for the most common ones.
+![self-driving-car-tensorBoard-filtered-Models](./TensorBoard-Best-Models.PNG)
+Of these 6 models their parameters are given in the table below.
+number convolutional layers(cnvN)
+convolutional layer size(cnvS)
+convolutional window size(cnvW)
+number of dense neural network layers(dnsN)
+size of the dense neural network(dnsS)
+| cnvN	| cnvS 	| cnvW 	| dnsN 	| dnsS 	|
+| -----	| -----	| -----	| -----	| -----	|
+|	2	|  32	| 	5	| 	2	| 	50	|
+|	2	|  32	| 	5	| 	2	|  100	|
+|	2	|  32	| 	5	| 	3	| 	50	|
+|	2	|  32	| 	5	| 	3	|  100	|
+|	2	|  16	| 	3	| 	2	|  50	|
+|	2	|  16	| 	3	| 	2	|  100	|
+
+Based on the above stats I think we can look at the models and say that our ideal model would have 2 cnvN, 32 cnvS, 5 cnvW, 2 dnsN, and 50 or 100 dnsS.
+I will do some more testing to see if my tests were through enough.
+
+
+
+
 ## Lessons Learned
 ### Learning rate: 
 Learning rates have large effects on the outcome of the models, in model-V1.01 I used a Learning rate of 1.0e-4 which resulted in a model that was able to complete half a lap in the simulator. In the next model-V1.02 I doubled the Learning rate and the model was able to complete laps flawlessly which was a huge improvement from for a minor change. Upon analyzing the epochs, I noticed that when the Learning rate was ideal a steady decline in the loss and val_loss functions can be seen below:
@@ -167,6 +195,7 @@ Drop out rate is a useful property that allows every node in the network to get 
 
 ## Future Steps:
 1.	Add Lane Detection
+2. Get more tracks so model will be tested against completely unseen levels and thus it build a more diverse test set and hopefully learn to . 
 
 
 
