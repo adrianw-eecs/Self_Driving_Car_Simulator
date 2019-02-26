@@ -200,6 +200,7 @@ Drop out rate is a useful property that allows every node in the network to get 
 3. Run the multi-model perfomance testing against a larger data set, 5 laps with smaller batch sizes and more epochs
 4. Try out a Residual Neural Network structure
 5. Change code so the network gets 3 images(left, front, right) as the processing, not just one image
+6. Test out potentials for Descision Tree networks, since they are more applicable in a saftey critcal environment
 
 
 
