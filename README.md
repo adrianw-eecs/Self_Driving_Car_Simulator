@@ -196,7 +196,11 @@ Drop out rate is a useful property that allows every node in the network to get 
 
 ## Future Steps:
 1.	Add Lane Detection
-2. Get more tracks so model will be tested against completely unseen levels and thus it build a more diverse test set and hopefully learn to . 
+2. Get more tracks so model will be tested against completely unseen levels and thus it build a more diverse test set and hopefully learn to be a generalized model. 
+3. Run the multi-model perfomance testing against a larger data set, 5 laps with smaller batch sizes and more epochs
+4. Try out a Residual Neural Network structure
+5. Change code so the network gets 3 images(left, front, right) as the processing, not just one image
+
 
 
 

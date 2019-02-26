@@ -8,7 +8,6 @@ from keras.models import Sequential
 from keras.optimizers import Adam
 #to save our model periodically as checkpoints for loading later
 from keras.callbacks import ModelCheckpoint
-from keras.callbacks import TensorBoard
 #what types of layers do we want our model to have?
 from keras.layers import Lambda, Conv2D, MaxPooling2D, Dropout, Dense, Flatten, Activation
 #helper class to define input shape and generate training images given image paths & steering angles
@@ -17,7 +16,6 @@ from utils import INPUT_SHAPE, batch_generator
 import argparse
 #for reading files
 import os
-import time
 
 #for debugging, allows for reproducible (deterministic) results 
 np.random.seed(0)
@@ -43,7 +41,7 @@ def load_data(args):
     return X_train, X_valid, y_train, y_valid
 
 
-def build_model(args, conv_layers, conv_size, conv_wind, dens_layers, dens_size):
+def build_model(args):
     """
     NVIDIA model used
     Image normalization to avoid saturation and make gradients work better.
@@ -63,58 +61,32 @@ def build_model(args, conv_layers, conv_size, conv_wind, dens_layers, dens_size)
     dropout avoids overfitting
     ELU(Exponential linear unit) function takes care of the Vanishing gradient problem. 
     """
-    # print(conv_layers, conv_size, conv_wind, dens_layers, dens_size)
-
     model = Sequential()
     model.add(Lambda(lambda x: x/127.5-1.0, input_shape=INPUT_SHAPE))
-
-    for num_conv in range(conv_layers):
-        model.add(Conv2D(conv_size, conv_wind, conv_wind, subsample=(2, 2)))
-        model.add(Activation('relu'))
-        model.add(MaxPooling2D(pool_size=(2, 2), strides=(2,2), dim_ordering="th"))
+    model.add(Conv2D(32, 5, 5, subsample=(2, 2)))
+    model.add(Activation('relu'))
+    model.add(MaxPooling2D(pool_size=(2, 2), strides=(2,2), dim_ordering="th"))
+    model.add(Conv2D(32, 5, 5, subsample=(2, 2)))
+    model.add(Activation('relu'))
+    model.add(MaxPooling2D(pool_size=(2, 2), strides=(2,2), dim_ordering="th"))
 
     model.add(Dropout(args.keep_prob))
     model.add(Flatten())
 
-    for num_dens in range(dens_layers):
-        # print("------------------" , num_dens)
-   
-        model.add(Dense(dens_size/(num_dens + 1)))
-        model.add(Activation('relu'))
-        model.add(Dropout(args.keep_prob))
-
+    model.add(Dense(100))
+    model.add(Activation('relu'))
+    model.add(Dropout(args.keep_prob))
+    model.add(Dense(50))
+    model.add(Activation('relu'))
+    model.add(Dropout(args.keep_prob))
 
     model.add(Dense(1))
-
     model.summary()
 
     return model
 
 
-
-    # model.add(Conv2D(24, 5, 5, activation='relu', subsample=(2, 2)))
-    # # model.add(MaxPooling2D(pool_size=(2, 2), strides=(2,2), dim_ordering="th")) 
-    # model.add(Conv2D(36, 5, 5, activation='relu', subsample=(2, 2)))
-    # model.add(Conv2D(48, 5, 5, activation='relu', subsample=(2, 2)))
-    # model.add(MaxPooling2D(pool_size=(2, 2), strides=(2,2), dim_ordering="th"))
-    # model.add(Conv2D(64, 3, 3, activation='relu'))
-    # model.add(Conv2D(64, 3, 3, activation='relu'))
-    # model.add(MaxPooling2D(pool_size=(2, 2), strides=(2,2), dim_ordering="th"))
-    # model.add(Dropout(args.keep_prob))
-    # model.add(Flatten())
-    # model.add(Dense(100, activation='relu'))
-    # model.add(Dropout(args.keep_prob))
-    # model.add(Dense(50, activation='relu'))
-    # model.add(Dropout(args.keep_prob))
-    # model.add(Dense(10, activation='relu'))
-    # model.add(Dropout(args.keep_prob))
-    # model.add(Dense(1))
-    # model.summary()
-
-    # return model
-
-
-def train_model(model, args, X_train, X_valid, y_train, y_valid, name):
+def train_model(model, args, X_train, X_valid, y_train, y_valid):
     """
     Train the model
     """
@@ -125,12 +97,11 @@ def train_model(model, args, X_train, X_valid, y_train, y_valid, name):
     #made based on either the maximization or the minimization of the monitored quantity. For val_acc, 
     #this should be max, for val_loss this should be min, etc. In auto mode, the direction is automatically
     #inferred from the name of the monitored quantity.
-    checkpoint = ModelCheckpoint((name + "-Epoch-{epoch:03d}.h5"),
+    checkpoint = ModelCheckpoint('model-{epoch:03d}.h5',
                                  monitor='val_loss',
                                  verbose=0,
                                  save_best_only=args.save_best_only,
                                  mode='auto')
-    tensorboard = TensorBoard(log_dir="tensorBoard_Logs/{}".format(name))
 
     #calculate the difference between expected steering angle and actual steering angle
     #square the difference
@@ -152,7 +123,7 @@ def train_model(model, args, X_train, X_valid, y_train, y_valid, name):
                         max_q_size=1,
                         validation_data=batch_generator(args.data_dir, X_valid, y_valid, args.batch_size, False),
                         nb_val_samples=len(X_valid),
-                        callbacks=[tensorboard, checkpoint],
+                        callbacks=[checkpoint],
                         verbose=1)
 
 #for command line args
@@ -164,7 +135,6 @@ def s2b(s):
     return s == 'true' or s == 'yes' or s == 'y' or s == '1'
 
 
-
 def main():
     """
     Load train/validation data set and train the model
@@ -172,13 +142,12 @@ def main():
     parser = argparse.ArgumentParser(description='Behavioral Cloning Training Program')
     parser.add_argument('-d', help='data directory',        dest='data_dir',          type=str,   default='data')
     parser.add_argument('-t', help='test size fraction',    dest='test_size',         type=float, default=0.2)
-    parser.add_argument('-k', help='drop out probability',  dest='keep_prob',         type=float, default=0.2)
+    parser.add_argument('-k', help='drop out probability',  dest='keep_prob',         type=float, default=0.4)
     parser.add_argument('-n', help='number of epochs',      dest='nb_epoch',          type=int,   default=10)
-    parser.add_argument('-s', help='samples per epoch',     dest='samples_per_epoch', type=int,   default=10000)
+    parser.add_argument('-s', help='samples per epoch',     dest='samples_per_epoch', type=int,   default=20000)
     parser.add_argument('-b', help='batch size',            dest='batch_size',        type=int,   default=40)
     parser.add_argument('-o', help='save best models only', dest='save_best_only',    type=s2b,   default='true')
     parser.add_argument('-l', help='learning rate',         dest='learning_rate',     type=float, default=1.0e-4)
-    parser.add_argument('-v', help='version',               dest='version_num',       type=str,   default='unknown')
     args = parser.parse_args()
 
     #print parameters
@@ -191,24 +160,10 @@ def main():
 
     #load data
     data = load_data(args)
-
-    conv_layers = [2,3]
-    conv_sizes = [16,32,64,128]
-    conv_winds = [3,5]
-    dens_layers = [2,3]
-    dens_sizes = [50,100]
-    for conv_layer in conv_layers:
-        for conv_size in conv_sizes:
-            for conv_wind in conv_winds:
-                for dens_layer in dens_layers:
-                    for dens_size in dens_sizes:
-                        #build model
-                        model = build_model(args, conv_layer, conv_size, conv_wind, dens_layer, dens_size)
-                        #train model on data, it saves as model.h5 
-                        # name = "/Saved_Models/" + args.version_num + "/"
-                        name = "model-time{}-cnvL{}-cnvS{}-cnvW{}-dnsL{}-dnsS{}".format((int(time.time())-1550788000), conv_layer, conv_size, conv_wind, dens_layer, dens_size)
-                        print(name)
-                        train_model(model, args, *data, name)
+    #build model
+    model = build_model(args)
+    #train model on data, it saves as model.h5 
+    train_model(model, args, *data)
 
 
 if __name__ == '__main__':
