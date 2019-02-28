@@ -43,7 +43,6 @@ This model performed poorly, did mild amounts of steering but encountered issues
 This model performed poorly, but was able to complete half a lap, did not experience the swaying as much as the V1.00 model.
 
 4.	**model-V1.02** - Model trained using 2 laps of desert test data and 10 epochs and learning rate of 2.0e-4
-![self-driving-car-model-V1.02](./SelfDrivingCarNanodegreeProgram.mp4)
 
 This model performed extremely well, the faster learning rate helped the algorithm tune its self much better and was able to perform on par with the Pre-trained model. I was fairly surprised that such a small change could affect the outcome of the model so much.
 Testing model-V1.02 on a track that it has never seen before yielding unexpected results the neural network was able to manage part of the course which is surprising since many other models couldn’t make it past the first turn.
