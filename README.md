@@ -6,9 +6,11 @@ I was inspired to do this project by Siraj Raval from YouTube.
 In this project I will be using a Neural Network to drive a car around a track in a simulator. The simulator we're going to use Udacity's [self driving car simulator](https://github.com/udacity/self-driving-car-sim) as a testbed for training an autonomous car. Along with the simulator I was provided a pre-trained model, I will be attempting to outperform this model. 
 ![Self-Driving Car Simulator](./Self_Driving_Car_Simulator.png)
 
-## Hyper Parameter Optimization
-During this project I tried to determine which model would be the best to train based on their performance by varying a variety of factors including, number of convolutional layers, number of convolutional nodes, size of convolutional window, number of dense layers, number of dense nodes, activation functions, loss functions and optimizers. Below you can see a screen shot of some of the different models I tested.
+During this project I tried to determine which model would be the best to train based on their performance by varying a variety of factors including, number of convolutional layers, number of convolutional nodes, size of convolutional window, number of dense layers, nuumber of dense nodes.
 ![self-driving-car-tensorBoard](./TensorBoard.png)
+
+## One of the top performing models
+![Self_Driving_Car_model-V1.14](./Self_Driving_Car_model-V1.14.mp4)
 
 ## Usage
 The models that I will be posting can be run by running the commands below
@@ -45,7 +47,7 @@ This model performed poorly, but was able to complete half a lap, did not experi
 4.	**model-V1.02** - Model trained using 2 laps of desert test data and 10 epochs and learning rate of 2.0e-4
 
 This model performed extremely well, the faster learning rate helped the algorithm tune its self much better and was able to perform on par with the Pre-trained model. I was fairly surprised that such a small change could affect the outcome of the model so much.
-Testing model-V1.02 on a track that it has never seen before yielding unexpected results the neural network was able to manage part of the course which is surprising since many other models couldn’t make it past the first turn. ![self-driving-car-model-V1.02](./SelfDrivingCarNanodegreeProgram.mp4)
+Testing model-V1.02 on a track that it has never seen before yielding unexpected results the neural network was able to manage part of the course which is surprising since many other models couldn’t make it past the first turn.
 
 5.	**model-V1.03** - Model trained using 2 laps of desert test data and 10 epochs and learning rate of 1.0e-3
 
@@ -195,7 +197,7 @@ Drop out rate is a useful property that allows every node in the network to get 
 
 
 ## Future Steps:
-1. Add Lane Detection
+1.	Add Lane Detection
 2. Get more tracks so model will be tested against completely unseen levels and thus it build a more diverse test set and hopefully learn to be a generalized model. 
 3. Run the multi-model perfomance testing against a larger data set, 5 laps with smaller batch sizes and more epochs
 4. Try out a Residual Neural Network structure
