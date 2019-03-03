@@ -8,6 +8,7 @@ In this project I will be using a Neural Network to drive a car around a track i
 
 During this project I tried to determine which model would be the best to train based on their performance by varying a variety of factors including, number of convolutional layers, number of convolutional nodes, size of convolutional window, number of dense layers, nuumber of dense nodes.
 ![self-driving-car-tensorBoard](./TensorBoard.png)
+
 ## Usage
 The models that I will be posting can be run by running the commands below
 ### Training 
@@ -41,10 +42,9 @@ This model performed poorly, did mild amounts of steering but encountered issues
 This model performed poorly, but was able to complete half a lap, did not experience the swaying as much as the V1.00 model.
 
 4.	**model-V1.02** - Model trained using 2 laps of desert test data and 10 epochs and learning rate of 2.0e-4
-![self-driving-car-model-V1.02](./SelfDrivingCarNanodegreeProgram.mp4)
 
 This model performed extremely well, the faster learning rate helped the algorithm tune its self much better and was able to perform on par with the Pre-trained model. I was fairly surprised that such a small change could affect the outcome of the model so much.
-Testing model-V1.02 on a track that it has never seen before yielding unexpected results the neural network was able to manage part of the course which is surprising since many other models couldn’t make it past the first turn.
+Testing model-V1.02 on a track that it has never seen before yielding unexpected results the neural network was able to manage part of the course which is surprising since many other models couldn’t make it past the first turn. ![self-driving-car-model-V1.02](./SelfDrivingCarNanodegreeProgram.mp4)
 
 5.	**model-V1.03** - Model trained using 2 laps of desert test data and 10 epochs and learning rate of 1.0e-3
 
@@ -93,7 +93,7 @@ With the 20% drop out rate the model performed very well, after the 5th epoch th
 
 Model-V1.14 the training stats of this model looked very similar to many of the previous successful models I trained. This was very promising, however when I saw the size of the file, I was a little concerned since the model size was about half the size of the previous models. Upon testing the model, I was pleasantly surprised it was easily able to complete the track and controlled the car in a steady manor.
 
-17. Created 64 different models to test different parameters. The different parameters I checked for were number convolutional layers, convolutional layer size, convolutional window size, number of dense neural network layers, size of the dense neural network.
+17. **Hyperparameter Optimization** Created 64 different models to test different parameters. The different parameters I checked for were number convolutional layers, convolutional layer size, convolutional window size, number of dense neural network layers, size of the dense neural network.
 
 Initally I had 64 different models which was a mess on TensorBoard:
 ![self-driving-car-tensorBoard-all-Models](./TensorBoard-All-Models.PNG)
@@ -118,8 +118,6 @@ size of the dense neural network(dnsS)
 
 Based on the above stats I think we can look at the models and say that our ideal model would have 2 cnvN, 32 cnvS, 5 cnvW, 2 dnsN, and 50 or 100 dnsS.
 I will do some more testing to see if my tests were through enough.
-
-
 
 
 ## Lessons Learned
