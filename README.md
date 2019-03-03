@@ -10,7 +10,7 @@ During this project I tried to determine which model would be the best to train 
 ![self-driving-car-tensorBoard](./media/TensorBoard.png)
 
 ## One of the top performing models Click on the video
-[![Video of Model performance](./media/thumbnail-model-V1.14.jpg)](https://youtu.be/_UYrJk2bwos)
+[![Video of Model performance](./media/youtube-thumbnail.jpg)](https://youtu.be/_UYrJk2bwos)
 [Video of Model performance](https://youtu.be/_UYrJk2bwos)
 
 ## Usage
