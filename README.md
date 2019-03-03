@@ -4,13 +4,13 @@ I was inspired to do this project by Siraj Raval from YouTube.
 ## Overview
 
 In this project I will be using a Neural Network to drive a car around a track in a simulator. The simulator we're going to use Udacity's [self driving car simulator](https://github.com/udacity/self-driving-car-sim) as a testbed for training an autonomous car. Along with the simulator I was provided a pre-trained model, I will be attempting to outperform this model. 
-![Self-Driving Car Simulator](./Self_Driving_Car_Simulator.png)
+![Self-Driving Car Simulator](./media/Self_Driving_Car_Simulator.png)
 
 During this project I tried to determine which model would be the best to train based on their performance by varying a variety of factors including, number of convolutional layers, number of convolutional nodes, size of convolutional window, number of dense layers, nuumber of dense nodes.
-![self-driving-car-tensorBoard](./TensorBoard.png)
+![self-driving-car-tensorBoard](./media/TensorBoard.png)
 
 ## One of the top performing models
-![Self_Driving_Car_model-V1.14](./Self_Driving_Car_model-V1.14.mp4)
+![Self_Driving_Car_model-V1.14](./media/Self_Driving_Car_model-V1.14.gif)
 
 ## Usage
 The models that I will be posting can be run by running the commands below
@@ -99,10 +99,10 @@ Model-V1.14 the training stats of this model looked very similar to many of the 
 17. **Hyperparameter Optimization** Created 64 different models to test different parameters. The different parameters I checked for were number convolutional layers, convolutional layer size, convolutional window size, number of dense neural network layers, size of the dense neural network.
 
 Initally I had 64 different models which was a mess on TensorBoard:
-![self-driving-car-tensorBoard-all-Models](./TensorBoard-All-Models.PNG)
+![self-driving-car-tensorBoard-all-Models](./media/TensorBoard-All-Models.PNG)
 
 For my evaluation of the stats I have determined 6 neural networks that were able to perform the best as shown below, and then I looked at the parameters given and looked for the most common ones.
-![self-driving-car-tensorBoard-filtered-Models](./TensorBoard-Best-Models.PNG)
+![self-driving-car-tensorBoard-filtered-Models](./media/TensorBoard-Best-Models.PNG)
 Of these 6 models their parameters are given in the table below.
 number convolutional layers(cnvN)
 convolutional layer size(cnvS)
@@ -121,6 +121,12 @@ size of the dense neural network(dnsS)
 
 Based on the above stats I think we can look at the models and say that our ideal model would have 2 cnvN, 32 cnvS, 5 cnvW, 2 dnsN, and 50 or 100 dnsS.
 I will do some more testing to see if my tests were through enough.
+
+
+18. **model-V1.20** - This model was designed after the results of the Hyperparameter optimization, and was trained using the settings of the preivous models. The configuration was, 2 convolutional layers, each with 32 filters, and windows sizes of 5 pixels. It used 3 dense layers, with 100 nodes, 50 nodes, and 1 node respectively. This models  performace was able to improve by about 20% 
+Model trained using 2 laps of desert test data and 10 epochs and learning rate of 2.0e-4, test a different activation function ReLU and loss function changed to mean_squared_error. This model also used dropout of 50% after each layer of the network. In addition, I added Maxpooling layers after the 3rd convolution and just before the convolution outputs are feed into the network. 
+
+Model-V1.20 
 
 
 ## Lessons Learned
