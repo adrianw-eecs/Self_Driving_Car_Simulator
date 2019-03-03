@@ -9,8 +9,9 @@ In this project I will be using a Neural Network to drive a car around a track i
 During this project I tried to determine which model would be the best to train based on their performance by varying a variety of factors including, number of convolutional layers, number of convolutional nodes, size of convolutional window, number of dense layers, nuumber of dense nodes.
 ![self-driving-car-tensorBoard](./media/TensorBoard.png)
 
-## One of the top performing models
+## One of the top performing models Click on the video
 [![Video of Model performance](./media/thumbnail-model-V1.14.jpg)](https://youtu.be/_UYrJk2bwos)
+[Video of Model performance](https://youtu.be/_UYrJk2bwos)
 
 ## Usage
 The models that I will be posting can be run by running the commands below
@@ -123,10 +124,9 @@ Based on the above stats I think we can look at the models and say that our idea
 I will do some more testing to see if my tests were through enough.
 
 
-18. **model-V1.20** - This model was designed after the results of the Hyperparameter optimization, and was trained using the settings of the preivous models. The configuration was, 2 convolutional layers, each with 32 filters, and windows sizes of 5 pixels. It used 3 dense layers, with 100 nodes, 50 nodes, and 1 node respectively. This models  performace was able to improve by about 20% 
-Model trained using 2 laps of desert test data and 10 epochs and learning rate of 2.0e-4, test a different activation function ReLU and loss function changed to mean_squared_error. This model also used dropout of 50% after each layer of the network. In addition, I added Maxpooling layers after the 3rd convolution and just before the convolution outputs are feed into the network. 
+18. **model-V1.20** - This model was designed after the results of the Hyperparameter optimization, and was trained using the settings of the preivous models. The configuration was, 2 convolutional layers, each with 32 filters, and windows sizes of 5 pixels. It used 3 dense layers, with 100 nodes, 50 nodes, and 1 node respectively.  Model trained using 2 laps of desert test data and 10 epochs and learning rate of 2.0e-4, test a different activation function ReLU and loss function changed to mean_squared_error. This model also used dropout of 50% after each layer of the network. In addition, I added Maxpooling layers after the 3rd convolution and just before the convolution outputs are feed into the network. 
 
-Model-V1.20 
+Model-V1.20 performace was able to improve by about 20%.
 
 
 ## Lessons Learned
