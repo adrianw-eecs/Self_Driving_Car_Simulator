@@ -104,7 +104,7 @@ def train_model(model, args, X_train, X_valid, y_train, y_valid):
     #made based on either the maximization or the minimization of the monitored quantity. For val_acc, 
     #this should be max, for val_loss this should be min, etc. In auto mode, the direction is automatically
     #inferred from the name of the monitored quantity.
-    name = "Model-Both-Tracks"
+    name = "Model-Both-Tracks-AVG"
     checkpoint = ModelCheckpoint('model-{epoch:03d}.h5',
                                  monitor='val_loss',
                                  verbose=0,
