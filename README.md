@@ -18,19 +18,15 @@ The models that I will be posting can be run by running the commands below
 python model.py -d Training_Data\2_Laps_Desert_Track -l 2.0e-4 -o false -n 10
 
 ### Driving/Testing Best Models Below 
-python drive.py Saved_Models\model-V1.02.h5 
+python drive.py Saved_Models\model-V1.23\model-3-both-tracks-epoch-024.h5
 
-python drive.py Saved_Models\model-V1.08\model-008.h5 
 
-python drive.py Saved_Models\model-V1.13\model-009.h5 
-
-python drive.py Saved_Models\model-V1.14\model-008.h5
 
 ### Progress Tracking
 tensorboard --logdir=training:tensorBoard_Logs/ --host=127.0.0.1
 
 ## Model Versions
-### Current Best Model: model-V1.02 and model-V1.08-Epoch-8 and model-V1.13-Epoch 10
+### Current Best Model: model-V1.23-epoch-24
 
 1.	**model-Pre-Trained** - Pre-trained model created
 
@@ -134,6 +130,11 @@ Model was quite under whelming, it was unable to make sharp turns which I hypoth
 20. **model-V1.22** - For this technique I used the same model as in model-V1.21. However while creating the training data I realized that when I press a key on my keyboard it changes the direction for that frame but I could have pressed the key a tenth of a second sooner and It still would have been the correct steering angle. So when training this model I used the concept of averaging the current frame with the previous and next. However I added more weight to the current frame. I used the following formula new_steer = ((current_steer * 2) + prev_steer + next_steer)/4. I believe this formula is the best since it adds more granular control to the data which will prevent the car from oversteering. In addition this formula allows the car to control the car more smoothly.  
 
 Model was quite under whelming, it was unable to make sharp turns which I hypothesis is from the lack of break use in the training data. I did see an imporovement in the averaged data, since it was turned and perofmed much more smoothly. It was also able to reach an extremely low los_val of 0.096. ** Interestingly the learning curves for modelV1.21 and model-V1.22 are exactly the same except for the starting accuracy. ** 
+
+21. **model-V1.23** - For this technique I used the same model as in model-V1.22. However while creating the training data I realized that when I press a key on my keyboard it changes the direction for that frame but I could have pressed the key a tenth of a second sooner and It still would have been the correct steering angle. So when training this model I used the concept of averaging the current frame with the previous and next. However I added more weight to the current frame. I used the following formula new_steer = ((current_steer * 2) + prev_steer + next_steer)/4. I believe this formula is the best since it adds more granular control to the data which will prevent the car from oversteering. In addition this formula allows the car to control the car more smoothly.  
+
+This model was by far the best so far, it was able to complete laps on the desert track and complete most of the mountian track and even behaved differently than all other models. This model would break/let of the accelerator when it was unable to make the turn. At one point on an uphill slope the car was unable to see the road on the other side of the peak and it slowed down.
+
 
 ## Lessons Learned
 ### Learning rate: 
