@@ -1,0 +1,1 @@
+start cmd "/K" call C:\ProgramData\Anaconda3\Scripts\activate.bat activate car-behavioral-cloning2
