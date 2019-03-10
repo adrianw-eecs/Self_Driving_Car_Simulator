@@ -20,8 +20,6 @@ python model.py -d Training_Data\2_Laps_Desert_Track -l 2.0e-4 -o false -n 10
 ### Driving/Testing Best Models Below 
 python drive.py Saved_Models\model-V1.23\model-3-both-tracks-epoch-024.h5
 
-
-
 ### Progress Tracking
 tensorboard --logdir=training:tensorBoard_Logs/ --host=127.0.0.1
 
@@ -207,7 +205,7 @@ I tried a few loss functions however they all performed worse than the mean squa
 Drop out rate is a useful property that allows every node in the network to get a chance to contribute to the end outputs and prevents one single node from making all the decisions. The drop out rate is a value that needs to be tuned very carefully, if the drop out rate is too high the network will fail to learn anything.
 
 ### Maxpooling 
-
+Maxpooling seems to be quite a valuable techinque since it helps improve the overall performance of the model as well as cut down the amount of processing required since it takes the largest value our of a few rather than having to process each value. 
 
 ## Future Steps:
 1.	Add Lane Detection
