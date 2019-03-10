@@ -10,7 +10,7 @@ from keras.optimizers import Adam
 from keras.callbacks import ModelCheckpoint
 from keras.callbacks import TensorBoard
 #what types of layers do we want our model to have?
-from keras.layers import Lambda, Conv2D, MaxPooling2D, Dropout, Dense, Flatten, Activation
+from keras.layers import Lambda, Conv2D, Conv3D, MaxPooling2D, Dropout, Dense, Flatten, Activation
 #helper class to define input shape and generate training images given image paths & steering angles
 from utils import INPUT_SHAPE, batch_generator
 #for command line arguments
@@ -67,33 +67,29 @@ def build_model(args):
     model.add(Lambda(lambda x: x/127.5-1.0, input_shape=INPUT_SHAPE))
     model.add(Conv2D(256, 5, 5, subsample=(2, 2)))
     model.add(Activation('relu'))
-    model.add(MaxPooling2D(pool_size=(2, 2), strides=(2,2), dim_ordering="th"))
+
     model.add(Conv2D(256, 5, 5, subsample=(2, 2)))
     model.add(Activation('relu'))
-    model.add(MaxPooling2D(pool_size=(2, 2), strides=(2,2), dim_ordering="th"))
-    model.add(Conv2D(256, 5, 5, subsample=(2, 2)))
+    model.add(MaxPooling2D(pool_size=(2, 2), strides=(1,1), dim_ordering="tf"))
+    
+    model.add(Conv2D(256, 5, 5, subsample=(1, 1)))
     model.add(Activation('relu'))
-    model.add(MaxPooling2D(pool_size=(2, 2), strides=(2,2), dim_ordering="th"))
-    model.add(Conv2D(256, 5, 5, subsample=(2, 2)))
+
+    model.add(Conv2D(256, 2, 2, subsample=(1, 1)))
     model.add(Activation('relu'))
-    model.add(MaxPooling2D(pool_size=(2, 2), strides=(2,2), dim_ordering="th"))
-    model.add(Conv2D(256, 5, 5, subsample=(2, 2)))
+    model.add(MaxPooling2D(pool_size=(2, 2), strides=(1,1), dim_ordering="tf"))
+
+    model.add(Conv2D(256, 2, 2, subsample=(1, 1)))
     model.add(Activation('relu'))
-    model.add(MaxPooling2D(pool_size=(2, 2), strides=(2,2), dim_ordering="th"))
-    model.add(Conv2D(256, 5, 5, subsample=(2, 2)))
+
+    model.add(Conv2D(256, 1, 1, subsample=(1, 1)))
     model.add(Activation('relu'))
-    model.add(MaxPooling2D(pool_size=(2, 2), strides=(2,2), dim_ordering="th"))
-    model.add(Conv2D(256, 5, 5, subsample=(2, 2)))
-    model.add(Activation('relu'))
-    model.add(MaxPooling2D(pool_size=(2, 2), strides=(2,2), dim_ordering="th"))
+    model.add(MaxPooling2D(pool_size=(2, 2), strides=(1,1), dim_ordering="tf"))
 
 
     model.add(Dropout(args.keep_prob))
     model.add(Flatten())
-    model.add(Dense(500))
-    model.add(Activation('relu'))
-    model.add(Dropout(args.keep_prob))
-    model.add(Dense(1250))
+    model.add(Dense(250))
     model.add(Activation('relu'))
     model.add(Dropout(args.keep_prob))
     model.add(Dense(100))
